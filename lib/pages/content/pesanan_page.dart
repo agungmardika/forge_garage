@@ -16,11 +16,11 @@ class _pesananPageState extends State<pesananPage> {
   @override
   void initState() {
     super.initState();
-    _refreshUsers();
+    _refreshReservasi();
   }
 
-  void _refreshUsers() async {
-    final data = await dbHelper.queryAllUsers();
+  void _refreshReservasi() async {
+    final data = await dbHelper.queryAllReservasi();
     setState(() {
       _reservasi = data;
     });
@@ -28,27 +28,61 @@ class _pesananPageState extends State<pesananPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Pesanan Saya"),
-          centerTitle: true,
-        ),
-        body: ListView(
-          children: [
-            Text("Reservasi"),
-            ..._reservasi.map((data) {
+      appBar: AppBar(
+        title: Text("Pesanan Saya"),
+        centerTitle: true,
+      ),
+      body: ListView(
+        children: [
+          Text("Reservasi"),
+          ..._reservasi.map(
+            (data) {
               return Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6),
-                ),
                 child: Text(
                   data['produk_servis'],
                   style: TextStyle(color: Colors.black),
                 ),
               );
-            })
-          ],
-        ));
+            },
+          ),
+          Text("Tanggal Reservasi"),
+          ..._reservasi.map(
+            (data) {
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  data['tanggal_servis'],
+                  style: TextStyle(color: Colors.black),
+                ),
+              );
+            },
+          ),
+          Text("Jam Servis"),
+          ..._reservasi.map(
+            (data) {
+              return Container(
+                child: Text(
+                  data['jam_servis'],
+                  style: TextStyle(color: Colors.black),
+                ),
+              );
+            },
+          ),
+          Text("Tipe Mobil"),
+          ..._reservasi.map(
+            (data) {
+              return Container(
+                child: Text(
+                  data['tipe_mobil'],
+                  style: TextStyle(color: Colors.black),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

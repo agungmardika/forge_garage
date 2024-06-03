@@ -53,7 +53,7 @@ class DBHelper {
     return await db.delete('reservasi', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<List<Map<String, dynamic>>> queryAllUsers() async {
+  Future<List<Map<String, dynamic>>> queryAllReservasi() async {
     Database db = await database;
     return await db.query('reservasi');
   }
