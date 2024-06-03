@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, prefer__ructors, use_key_in_widget_ructors
+// ignore_for_file: camel_case_types, prefer__ructors, use_key_in_widget_ructors, unnecessary_import
 
 import 'package:crudsqf/pages/login/login_page.dart';
 import 'package:flutter/material.dart';

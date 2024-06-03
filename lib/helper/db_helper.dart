@@ -48,9 +48,9 @@ class DBHelper {
     return await db.update('reservasi', row, where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<int> deleteReservasi(int id) async {
+  Future<void> deleteReservasi(int id) async {
     Database db = await database;
-    return await db.delete('reservasi', where: 'id = ?', whereArgs: [id]);
+    await db.delete('reservasi', where: 'id = ?', whereArgs: [id]);
   }
 
   Future<List<Map<String, dynamic>>> queryAllReservasi() async {

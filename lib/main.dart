@@ -2,6 +2,7 @@
 
 import 'package:crudsqf/pages/content/home_page.dart';
 import 'package:crudsqf/pages/login/login_page.dart';
+import 'package:crudsqf/splash_screen/splash_screen.dart';
 import 'package:crudsqf/splash_screen/welcome_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: welcomePage(),
+      home: SplashScreen(),
     );
   }
 }

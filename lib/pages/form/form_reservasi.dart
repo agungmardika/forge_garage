@@ -1,7 +1,7 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors, use_build_context_synchronously, non_constant_identifier_names, camel_case_types
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors, use_build_context_synchronously, non_constant_identifier_names, camel_case_types, prefer_final_fields
 
 import 'package:crudsqf/helper/db_helper.dart';
-import 'package:crudsqf/pages/content/pesanan_page.dart';
+import 'package:crudsqf/pages/reservasi/detail_reservasi.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -62,7 +62,7 @@ class _formReservasiState extends State<formReservasi> {
         'tipe_mobil': _tipeMobilController.text,
       };
 
-      await DBHelper().insertReservasi(data);
+      final int newReservasiId = await DBHelper().insertReservasi(data);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Reservasi berhasil disimpan')),
@@ -73,10 +73,12 @@ class _formReservasiState extends State<formReservasi> {
       _jamServisController.clear();
       _tipeMobilController.clear();
 
-      // Navigate to pesananPage
-      Navigator.pushReplacement(
+      // Navigasi ke halaman pesananPage dengan menggunakan ID yang baru saja didapatkan
+      Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => pesananPage()),
+        MaterialPageRoute(
+          builder: (context) => pesananPage(id: newReservasiId),
+        ),
       );
     }
   }
@@ -118,7 +120,8 @@ class _formReservasiState extends State<formReservasi> {
             const SizedBox(height: 10),
             TextFormField(
               controller: _tanggalServisController,
-              readOnly: true, // Menonaktifkan input langsung
+              onTap: () => _selectDate(context),
+              readOnly: true,
               decoration: decoration.copyWith(
                 hintText: "Input Tanggal Service",
                 suffixIcon: IconButton(
@@ -141,7 +144,8 @@ class _formReservasiState extends State<formReservasi> {
             const SizedBox(height: 10),
             TextFormField(
               controller: _jamServisController,
-              readOnly: true, // Menonaktifkan input langsung
+              readOnly: true,
+              onTap: () => _selectTime(context),
               decoration: decoration.copyWith(
                 hintText: "Input Jam Service",
                 suffixIcon: IconButton(

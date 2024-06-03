@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, use_full_hex_values_for_flutter_colors
 
-import 'package:crudsqf/pages/content/pesanan_page.dart';
+import 'package:crudsqf/pages/reservasi/detail_reservasi.dart';
 import 'package:crudsqf/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -93,13 +93,15 @@ class profilePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => pesananPage()),
+                            builder: (context) =>
+                                pesananPage(id: -1), 
+                          ),
                         );
                       },
                       child: Row(
                         children: [
                           Icon(
-                            Icons.settings,
+                            Icons.note,
                             color: Color.fromARGB(255, 5, 43, 75),
                             size: 40,
                           ),
@@ -114,6 +116,7 @@ class profilePage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(height: 20),
 
                     Row(
                       children: [
@@ -136,7 +139,7 @@ class profilePage extends StatelessWidget {
                     Row(
                       children: [
                         Icon(
-                          Icons.settings,
+                          Icons.question_answer,
                           color: Color.fromARGB(255, 5, 43, 75),
                           size: 40,
                         ),
@@ -154,7 +157,7 @@ class profilePage extends StatelessWidget {
                     Row(
                       children: [
                         Icon(
-                          Icons.settings,
+                          Icons.lock,
                           color: Color.fromARGB(255, 5, 43, 75),
                           size: 40,
                         ),
