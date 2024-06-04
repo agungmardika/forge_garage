@@ -2,17 +2,20 @@ import 'package:crudsqf/helper/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class editReservasiPage extends StatefulWidget {
-  final List<Map<String, dynamic>> reservasi; // Parameter reservasi
-  final int id; // Tambahkan parameter id
-  const editReservasiPage({Key? key, required this.reservasi, required this.id})
+class EditReservasiPage extends StatefulWidget {
+  final List<Map<String, dynamic>> reservasi;
+  final int id;
+
+  const EditReservasiPage({Key? key, required this.reservasi, required this.id})
       : super(key: key);
 
   @override
-  State<editReservasiPage> createState() => _editReservasiPageState();
+  State<EditReservasiPage> createState() => _EditReservasiPageState();
 }
 
-class _editReservasiPageState extends State<editReservasiPage> {
+class _EditReservasiPageState extends State<EditReservasiPage> {
+  late int _id;
+
   final DBHelper dbHelper = DBHelper();
   final formKey = GlobalKey<FormState>();
 
@@ -32,20 +35,17 @@ class _editReservasiPageState extends State<editReservasiPage> {
   @override
   void initState() {
     super.initState();
+    _id = widget.id;
+    _produkServisController = TextEditingController();
+    _tanggalServisController = TextEditingController();
+    _jamServisController = TextEditingController();
+    _tipeMobilController = TextEditingController();
+
     if (widget.reservasi.isNotEmpty) {
-      _produkServisController =
-          TextEditingController(text: widget.reservasi[0]["produk_servis"]);
-      _tanggalServisController =
-          TextEditingController(text: widget.reservasi[0]["tanggal_servis"]);
-      _jamServisController =
-          TextEditingController(text: widget.reservasi[0]["jam_servis"]);
-      _tipeMobilController =
-          TextEditingController(text: widget.reservasi[0]["tipe_mobil"]);
-    } else {
-      _produkServisController = TextEditingController();
-      _tanggalServisController = TextEditingController();
-      _jamServisController = TextEditingController();
-      _tipeMobilController = TextEditingController();
+      _produkServisController.text = widget.reservasi[0]["produk_servis"];
+      _tanggalServisController.text = widget.reservasi[0]["tanggal_servis"];
+      _jamServisController.text = widget.reservasi[0]["jam_servis"];
+      _tipeMobilController.text = widget.reservasi[0]["tipe_mobil"];
     }
   }
 
@@ -78,20 +78,25 @@ class _editReservasiPageState extends State<editReservasiPage> {
   Future<void> _updateReservasi() async {
     if (formKey.currentState!.validate()) {
       Map<String, dynamic> updatedReservasi = {
-        'id': widget.reservasi[0]['id'],
+        'id': _id,
         'produk_servis': _produkServisController.text,
         'tanggal_servis': _tanggalServisController.text,
         'jam_servis': _jamServisController.text,
         'tipe_mobil': _tipeMobilController.text,
       };
 
-      // Update the reservation in the database
       int rowsUpdated = await dbHelper.updateReservasi(updatedReservasi);
-      print("Rows updated: $rowsUpdated"); // Debugging log
+      print("Rows updated: $rowsUpdated");
 
-      // If the update was successful, navigate back and pass true as the result
       if (rowsUpdated > 0) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Reservasi berhasil diperbarui')),
+        );
         Navigator.pop(context, true);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Gagal memperbarui reservasi')),
+        );
       }
     }
   }

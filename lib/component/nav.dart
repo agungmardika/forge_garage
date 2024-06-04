@@ -82,32 +82,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 200 ,
-        backgroundColor: Color(0xFF1D3557),
-        leading: Container(
-          child: Text(
-            "Selamat Datang User",
-            textAlign: TextAlign.center,
-            softWrap: false,
-            overflow: TextOverflow.clip,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-              fontSize: 30
-            ),
-          ),
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.white,
-            ),
-            onPressed: () {},
-          )
-        ],
-      ),
+      
       body: HomePage(),
     );
   }

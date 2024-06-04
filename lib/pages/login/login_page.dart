@@ -4,8 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:crudsqf/pages/content/home_page.dart';
 import 'package:crudsqf/component/nav.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool _isObscured = true; // Ubah menjadi true untuk mengamankan kata sandi
 
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
@@ -18,7 +25,6 @@ class LoginPage extends StatelessWidget {
         backgroundColor: const Color(0xFF1D3557),
       ),
       body: SingleChildScrollView(
-        // Gunakan SingleChildScrollView untuk menghindari masalah konten yang lebih besar dari layar
         child: Form(
           key: formKey,
           child: Column(
@@ -32,7 +38,7 @@ class LoginPage extends StatelessWidget {
                   Center(
                     child: Image.asset(
                       "assets/images/logo-rounded-group.png",
-                      height: 150,
+                      height: 120,
                       width: 150,
                     ),
                   ),
@@ -43,10 +49,10 @@ class LoginPage extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(20),
                   child: Text(
-                    "Welcome Back!",
+                    "Sign In",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: 30,
                     ),
                     textAlign: TextAlign.start,
                   ),
@@ -56,7 +62,10 @@ class LoginPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                 child: Text(
                   "We glad to see you again, please login to continue our app",
-                  style: TextStyle(fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
                 ),
               ),
               Padding(
@@ -85,13 +94,24 @@ class LoginPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
                   controller: password,
+                  obscureText: _isObscured,
                   decoration: InputDecoration(
                     hintText: "Input Password",
                     border: const OutlineInputBorder(),
                     prefixIcon: SizedBox(
                       width: 60,
                       height: 60,
-                      child: Image.asset("assets/images/Lock_light.png"),
+                      child: Image.asset("assets/images/lock_light2.png"),
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(_isObscured
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _isObscured = !_isObscured;
+                        });
+                      },
                     ),
                   ),
                   validator: (value) {

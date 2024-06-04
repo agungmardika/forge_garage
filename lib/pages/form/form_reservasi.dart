@@ -54,34 +54,36 @@ class _formReservasiState extends State<formReservasi> {
   }
 
   void _submitForm() async {
-    if (formKey.currentState!.validate()) {
-      final data = {
-        'produk_servis': _produkServisController.text,
-        'tanggal_servis': _tanggalServisController.text,
-        'jam_servis': _jamServisController.text,
-        'tipe_mobil': _tipeMobilController.text,
-      };
+  if (formKey.currentState!.validate()) {
+    final data = {
+      'produk_servis': _produkServisController.text,
+      'tanggal_servis': _tanggalServisController.text,
+      'jam_servis': _jamServisController.text,
+      'tipe_mobil': _tipeMobilController.text,
+    };
 
-      final int newReservasiId = await DBHelper().insertReservasi(data);
+    // Insert reservasi dan dapatkan kembali ID yang baru saja ditambahkan
+    final int newReservasiId = await DBHelper().insertReservasi(data);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Reservasi berhasil disimpan')),
-      );
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Reservasi berhasil disimpan')),
+    );
 
-      _produkServisController.clear();
-      _tanggalServisController.clear();
-      _jamServisController.clear();
-      _tipeMobilController.clear();
+    _produkServisController.clear();
+    _tanggalServisController.clear();
+    _jamServisController.clear();
+    _tipeMobilController.clear();
 
-      // Navigasi ke halaman pesananPage dengan menggunakan ID yang baru saja didapatkan
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => pesananPage(id: newReservasiId),
-        ),
-      );
-    }
+    // Navigasi ke halaman pesananPage dengan menggunakan ID yang baru saja didapatkan
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => pesananPage(id: newReservasiId),
+      ),
+    );
   }
+}
+
 
   @override
   Widget build(BuildContext context) {

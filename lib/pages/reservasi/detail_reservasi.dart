@@ -50,7 +50,7 @@ class _pesananPageState extends State<pesananPage> {
         children: _reservasi.map(
           (data) {
             return Container(
-              margin: const EdgeInsets.all(8.0),
+              margin: const EdgeInsets.all(10.0),
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
@@ -81,16 +81,18 @@ class _pesananPageState extends State<pesananPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => editReservasiPage(
-                                  id: data['id'], reservasi: [],
+                                builder: (_) => EditReservasiPage(
+                                  id: data['id'], // Mengirim id yang terpilih
+                                  reservasi: [], // Pastikan reservasi sesuai dengan data yang ingin diubah
                                 ),
                               ),
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
-                          ),
-                          child: const Row(
+                              backgroundColor: Colors.green,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
@@ -114,6 +116,10 @@ class _pesananPageState extends State<pesananPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  8.0), // Ubah radius sesuai kebutuhan
+                            ),
                           ),
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,

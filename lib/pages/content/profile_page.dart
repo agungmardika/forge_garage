@@ -46,10 +46,16 @@ class profilePage extends StatelessWidget {
                     width: 80,
                     height: 80,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 191, 190, 190),
+                      color: Color(0xFF1D3557),
                       shape: BoxShape.circle,
                     ),
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 40, // Ubah ukuran ikon sesuai kebutuhan Anda
+                    ),
                   ),
+
                   SizedBox(width: 30),
                   // Profil
                   Column(
@@ -57,7 +63,7 @@ class profilePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Admin",
+                        "User",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -93,8 +99,7 @@ class profilePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                pesananPage(id: -1), 
+                            builder: (context) => pesananPage(id: -1),
                           ),
                         );
                       },
