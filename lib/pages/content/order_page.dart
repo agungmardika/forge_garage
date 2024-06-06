@@ -3,7 +3,6 @@
 import 'package:crudsqf/component/product_card.dart';
 import 'package:crudsqf/pages/content/detail_page.dart';
 import 'package:crudsqf/pages/form/form_reservasi.dart';
-import 'package:crudsqf/pages/reservasi/add_reservasi.dart';
 import 'package:flutter/material.dart';
 
 class orderPage extends StatefulWidget {

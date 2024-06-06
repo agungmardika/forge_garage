@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class EditReservasiPage extends StatefulWidget {
-  final List<Map<String, dynamic>> reservasi;
+  final List<Map<String, dynamic>> reservasi; // Parameter reservasi
   final int id;
-
   const EditReservasiPage({Key? key, required this.reservasi, required this.id})
       : super(key: key);
 
@@ -41,11 +40,58 @@ class _EditReservasiPageState extends State<EditReservasiPage> {
     _jamServisController = TextEditingController();
     _tipeMobilController = TextEditingController();
 
+    // Mengisi controller dengan existing data
+    _fillControllersWithData();
+  }
+
+  void _fillControllersWithData() {
     if (widget.reservasi.isNotEmpty) {
       _produkServisController.text = widget.reservasi[0]["produk_servis"];
       _tanggalServisController.text = widget.reservasi[0]["tanggal_servis"];
       _jamServisController.text = widget.reservasi[0]["jam_servis"];
       _tipeMobilController.text = widget.reservasi[0]["tipe_mobil"];
+    }
+  }
+
+  // Fungsi untuk membersihkan inputan setelah submit
+  void _clearForm() {
+    _produkServisController.clear();
+    _tanggalServisController.clear();
+    _jamServisController.clear();
+    _tipeMobilController.clear();
+  }
+
+  // Fungsi untuk memperbarui reservasi
+  Future<void> _updateReservasi() async {
+    if (formKey.currentState!.validate()) {
+      Map<String, dynamic> updatedReservasi = {
+        'id': _id,
+        'produk_servis': _produkServisController.text,
+        'tanggal_servis': _tanggalServisController.text,
+        'jam_servis': _jamServisController.text,
+        'tipe_mobil': _tipeMobilController.text,
+      };
+
+      int rowsUpdated = await dbHelper.updateReservasi(updatedReservasi);
+      print("Rows updated: $rowsUpdated");
+
+      if (rowsUpdated > 0) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Reservasi berhasil diperbarui')),
+        );
+
+        // Setelah berhasil diperbarui, refresh tampilan dengan setState
+        setState(() {
+          _clearForm(); // Membersihkan inputan setelah submit
+        });
+
+        // Kembali ke halaman sebelumnya
+        Navigator.pop(context, true);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Gagal memperbarui reservasi')),
+        );
+      }
     }
   }
 
@@ -72,32 +118,6 @@ class _EditReservasiPageState extends State<EditReservasiPage> {
       setState(() {
         _jamServisController.text = picked.format(context);
       });
-    }
-  }
-
-  Future<void> _updateReservasi() async {
-    if (formKey.currentState!.validate()) {
-      Map<String, dynamic> updatedReservasi = {
-        'id': _id,
-        'produk_servis': _produkServisController.text,
-        'tanggal_servis': _tanggalServisController.text,
-        'jam_servis': _jamServisController.text,
-        'tipe_mobil': _tipeMobilController.text,
-      };
-
-      int rowsUpdated = await dbHelper.updateReservasi(updatedReservasi);
-      print("Rows updated: $rowsUpdated");
-
-      if (rowsUpdated > 0) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Reservasi berhasil diperbarui')),
-        );
-        Navigator.pop(context, true);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal memperbarui reservasi')),
-        );
-      }
     }
   }
 

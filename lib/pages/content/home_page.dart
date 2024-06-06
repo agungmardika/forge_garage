@@ -249,7 +249,7 @@ class _HomePageState extends State<HomePage> {
                     imagePath,
                     fit: BoxFit.cover,
                     width:
-                        double.infinity, // Mengisi seluruh lebar yang tersedia
+                        double.infinity, 
                     height: double.infinity,
                   ),
                 ),
@@ -270,22 +270,28 @@ class _HomePageState extends State<HomePage> {
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image(
-            image: AssetImage(imagePath),
-            width: 20,
-            height: 20,
-          ),
-          const SizedBox(width: 10),
-          Text(
-            text,
-            style: const TextStyle(
-              color: Color.fromARGB(255, 5, 43, 75),
-              fontWeight: FontWeight.w600,
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Row(
+              children: [
+                Image(
+                  image: AssetImage(imagePath),
+                  width: 20,
+                  height: 20,
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  text,
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 5, 43, 75),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(width: 10),
           const Icon(Icons.keyboard_arrow_right_sharp,
               color: Color.fromARGB(255, 5, 43, 75)),
         ],

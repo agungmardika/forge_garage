@@ -32,7 +32,7 @@ class discountPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Container(
                 width: 350,
                 height: 220,
@@ -129,20 +129,6 @@ class discountPage extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.yellow,
-                                        size: 16,
-                                      ),
-                                      SizedBox(width: 5),
-                                      Text(
-                                        '4',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
                                       SizedBox(width: 15),
                                       Column(
                                         crossAxisAlignment:
@@ -152,7 +138,7 @@ class discountPage extends StatelessWidget {
                                             'Jl.Meratus No.10,Antasan',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 9,
+                                              fontSize: 12,
                                               fontWeight: FontWeight.normal,
                                             ),
                                           ),
@@ -161,7 +147,7 @@ class discountPage extends StatelessWidget {
                                             'Besar,',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 9,
+                                              fontSize: 10,
                                               fontWeight: FontWeight.normal,
                                             ),
                                           ),
@@ -170,7 +156,7 @@ class discountPage extends StatelessWidget {
                                             'Kec. Banjarmasin Tengah,',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 9,
+                                              fontSize: 10,
                                               fontWeight: FontWeight.normal,
                                             ),
                                           ),
@@ -181,7 +167,7 @@ class discountPage extends StatelessWidget {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 5),
+                                padding: const EdgeInsets.all(0),
                                 child: Text(
                                   '20 Sept 2024',
                                   style: TextStyle(
