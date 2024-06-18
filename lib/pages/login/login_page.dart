@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, unused_import
+// ignore_for_file: prefer_const_constructors, unused_import, prefer_const_constructors_in_immutables, library_private_types_in_public_api, use_super_parameters
 
 import 'package:flutter/material.dart';
-import 'package:crudsqf/pages/content/home_page.dart';
-import 'package:crudsqf/component/nav.dart';
+import 'package:forge/pages/content/home_page.dart';
+import 'package:forge/component/nav.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);

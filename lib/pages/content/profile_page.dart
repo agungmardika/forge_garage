@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, use_full_hex_values_for_flutter_colors
 
-import 'package:crudsqf/pages/reservasi/detail_reservasi.dart';
-import 'package:crudsqf/pages/login/login_page.dart';
+import 'package:forge/pages/reservasi/detail_reservasi.dart';
+import 'package:forge/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 
 class profilePage extends StatelessWidget {

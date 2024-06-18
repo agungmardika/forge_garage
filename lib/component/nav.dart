@@ -1,9 +1,9 @@
 // ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_const_constructors
-import 'package:crudsqf/pages/content/discount_page.dart';
-import 'package:crudsqf/pages/content/home_page.dart';
-import 'package:crudsqf/pages/content/notification_page.dart';
-import 'package:crudsqf/pages/content/order_page.dart';
-import 'package:crudsqf/pages/content/profile_page.dart';
+import 'package:forge/pages/content/discount_page.dart';
+import 'package:forge/pages/content/home_page.dart';
+import 'package:forge/pages/content/notification_page.dart';
+import 'package:forge/pages/content/order_page.dart';
+import 'package:forge/pages/content/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class navComponent extends StatefulWidget {

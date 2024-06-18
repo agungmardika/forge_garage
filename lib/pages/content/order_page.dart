@@ -1,8 +1,8 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, use_full_hex_values_for_flutter_colors
 
-import 'package:crudsqf/component/product_card.dart';
-import 'package:crudsqf/pages/content/detail_page.dart';
-import 'package:crudsqf/pages/form/form_reservasi.dart';
+import 'package:forge/component/product_card.dart';
+import 'package:forge/pages/content/detail_page.dart';
+import 'package:forge/pages/form/form_reservasi.dart';
 import 'package:flutter/material.dart';
 
 class orderPage extends StatefulWidget {
